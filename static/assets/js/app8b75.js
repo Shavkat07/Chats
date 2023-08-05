@@ -23,13 +23,13 @@
       if(elm){
         document.querySelector('.tyn-root').style.setProperty('--appbar-height', `${elm.offsetHeight}px`)
       }
-    } 
-    
+    }
+
 
     TynApp.Chat = {
       reply: {
         search : function(){
-          let elm = document.querySelectorAll('.js-toggle-chat-search'); 
+          let elm = document.querySelectorAll('.js-toggle-chat-search');
           if(elm){
             elm.forEach(item => {
               item.addEventListener('click', (e)=>{
@@ -55,7 +55,7 @@
         }
       },
       item : function(){
-        let elm = document.querySelectorAll('.js-toggle-main'); 
+        let elm = document.querySelectorAll('.js-toggle-main');
         if(elm){
           elm.forEach(item => {
             item.addEventListener('click', (e)=>{
@@ -70,8 +70,8 @@
         }
       },
       mute : function(){
-        let muteToggle = document.querySelector('.js-chat-mute-toggle'); 
-        let mute = document.querySelector('.js-chat-mute'); 
+        let muteToggle = document.querySelector('.js-chat-mute-toggle');
+        let mute = document.querySelector('.js-chat-mute');
         const muteOptionsModal = muteToggle && new bootstrap.Modal('#muteOptions', {})
         if(muteToggle){
           muteToggle.addEventListener('click', (e)=>{
@@ -92,13 +92,13 @@
         }
       },
       aside: function(){
-        let elm = document.querySelector('.js-toggle-chat-options'); 
+        let elm = document.querySelector('.js-toggle-chat-options');
         if(elm){
             let target = document.getElementById('tynChatAside');
             let chat = document.getElementById('tynMain');
             target.insertAdjacentHTML('beforebegin', `<div class="tyn-overlay js-toggle-chat-options" ></div>`);
             let overlay = document.querySelector('.tyn-overlay.js-toggle-chat-options');
-            
+
               function asideshow(){
                 elm.classList.add('active');
                 target.classList.add('show-aside');
@@ -115,11 +115,11 @@
                   overlay.classList.remove('active');
                 }
               }
-      
+
               if(TynApp.Page.Width > TynApp.Breakpoints.xl){
                 asideshow();
               }
-            
+
               elm.addEventListener('click', (e)=>{
                 e.preventDefault();
                 if(!chat.classList.contains('aside-shown')){
@@ -128,12 +128,12 @@
                   asidehide()
                 }
               })
-            
+
               overlay.addEventListener('click', (e)=>{
                 e.preventDefault();
                 asidehide();
               })
-      
+
               const chatObserver = new ResizeObserver((entries) => {
                 for (const entry of entries) {
                   if(entry.contentRect.width > TynApp.Breakpoints.xl){
@@ -144,16 +144,16 @@
                       chat.classList.add('aside-collapsed');
                     }, 1000);
                   }
-      
+
                   if(entry.contentRect.width < TynApp.Breakpoints.xl){
                     if(!chat.classList.contains('aside-collapsed')){
                       asidehide();
                     }
-                    
+
                   }
                 }
               });
-            
+
               chatObserver.observe(TynApp.Body);
         }
       }
